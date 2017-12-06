@@ -4,15 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.leonardomorais.myapplication.Fragments.FeedFragment">
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/lv_feed_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="repetir lista aqui"
-            android:gravity="center"
-            android:textSize="70sp"/>
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"></ListView>
 
-    </LinearLayout>
 </FrameLayout>
