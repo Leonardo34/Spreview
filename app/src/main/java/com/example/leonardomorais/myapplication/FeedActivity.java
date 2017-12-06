@@ -4,15 +4,33 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.leonardomorais.myapplication.Adapter.TabAdapter;
 import com.example.leonardomorais.myapplication.Helper.SlidingTabLayout;
+import com.example.leonardomorais.myapplication.Model.Colunas;
+import com.example.leonardomorais.myapplication.Model.Sprint;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
 
     private SlidingTabLayout slidingTabLayout;
 
     private ViewPager viewPager;
+
+    private List<String> colunas = new ArrayList<>();
+
+    private FirebaseDatabase database;
+
+    private TabAdapter tabAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +43,34 @@ public class FeedActivity extends AppCompatActivity {
         slidingTabLayout.setDistributeEvenly(true);
         slidingTabLayout.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimaryDark));
 
-        TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
+        database = FirebaseDatabase.getInstance();
+
+        DatabaseReference reference = database.getReference().child("sprints");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot each : dataSnapshot.getChildren()){
+
+                    Log.i("teste", "onDataChange: ");
+                    Sprint sprint = each.getValue(Sprint.class);
+
+                    for(Colunas coluna : sprint.getColunas()){
+                        colunas.add(coluna.getNome());
+                    }
+                    tabAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
         viewPager.setAdapter(tabAdapter);
 
         slidingTabLayout.setViewPager(viewPager);

@@ -1,4 +1,5 @@
 package com.example.leonardomorais.myapplication
+import android.content.Intent
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -17,17 +18,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed)
+        setContentView(R.layout.activity_main)
 
-        slidingTabLayout = findViewById<View>(R.id.stl_tabs) as SlidingTabLayout
-        slidingTabLayout!!.setDistributeEvenly(true)
-        slidingTabLayout!!.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorPrimaryDark))
-
-        viewPager = findViewById<View>(R.id.vp_main_feed) as ViewPager
-
-        val tabAdapter = TabAdapter(supportFragmentManager)
-        viewPager!!.adapter = tabAdapter
-
-        slidingTabLayout!!.setViewPager(viewPager)
+        val intent = Intent(this, FeedActivity::class.java)
+        startActivity(intent)
     }
 }

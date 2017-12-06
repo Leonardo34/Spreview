@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.leonardomorais.myapplication.Fragments.FeedFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,10 +15,12 @@ import java.util.List;
 
 public class TabAdapter extends FragmentStatePagerAdapter{
 
-    public String[] titulos = {"POSITIVOS", "NEGATIVOS"};
+    public List<String> titulos = new ArrayList<>();
 
-    public TabAdapter(FragmentManager fm) {
+    public TabAdapter(FragmentManager fm, List<String> colunas) {
+
         super(fm);
+        titulos = colunas;
     }
 
     @Override
@@ -28,11 +31,11 @@ public class TabAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public int getCount() {
-        return titulos.length;
+        return titulos.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position){
-        return titulos[position];
+        return titulos.get(position);
     }
 }
