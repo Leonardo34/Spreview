@@ -26,7 +26,7 @@ public class FeedActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
 
-    private List<String> colunas = new ArrayList<>();
+    private List<Colunas> colunas = new ArrayList<>();
 
     private FirebaseDatabase database;
 
@@ -53,15 +53,18 @@ public class FeedActivity extends AppCompatActivity {
 
                 for(DataSnapshot each : dataSnapshot.getChildren()){
 
-                    Log.i("teste", "onDataChange: ");
                     Sprint sprint = each.getValue(Sprint.class);
-
+                    colunas.clear();
                     for(Colunas coluna : sprint.getColunas()){
-                        colunas.add(coluna.getNome());
+                        colunas.add(coluna);
                     }
-                    tabAdapter.notifyDataSetChanged();
                 }
 
+                tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
+                viewPager.setAdapter(tabAdapter);
+
+                slidingTabLayout.setViewPager(viewPager);
+                tabAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -70,9 +73,5 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
 
-        tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
-        viewPager.setAdapter(tabAdapter);
-
-        slidingTabLayout.setViewPager(viewPager);
     }
 }

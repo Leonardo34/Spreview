@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.leonardomorais.myapplication.Fragments.FeedFragment;
+import com.example.leonardomorais.myapplication.Model.Colunas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,27 +16,27 @@ import java.util.List;
 
 public class TabAdapter extends FragmentStatePagerAdapter{
 
-    public List<String> titulos = new ArrayList<>();
+    public List<Colunas> colunas = new ArrayList<>();
 
-    public TabAdapter(FragmentManager fm, List<String> colunas) {
+    public TabAdapter(FragmentManager fm, List<Colunas> colunas) {
 
         super(fm);
-        titulos = colunas;
+        this.colunas = colunas;
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new FeedFragment();
+        Fragment fragment = new FeedFragment(colunas.get(position).getPostIts());
         return fragment;
     }
 
     @Override
     public int getCount() {
-        return titulos.size();
+        return colunas.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position){
-        return titulos.get(position);
+        return colunas.get(position).getNome();
     }
 }

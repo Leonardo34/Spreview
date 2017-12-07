@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,19 +22,23 @@ public class FeedFragment extends Fragment {
 
     private ListView listView;
     private ArrayAdapter adapter;
-    private ArrayList<String> textoPostits;
+    private List<String> textoPostits = new ArrayList<>();
 
     public FeedFragment() {
-        // Required empty public constructor
     }
 
+
+    public FeedFragment(List<PostIts> postItsList) {
+
+        for(PostIts postIt : postItsList){
+            textoPostits.add(postIt.getDescricao());
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        textoPostits = new ArrayList<>();
-        textoPostits.add("item 1");
-        textoPostits.add("item 2");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
