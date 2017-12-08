@@ -1,10 +1,12 @@
 package com.example.leonardomorais.myapplication;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.leonardomorais.myapplication.Adapter.TabAdapter;
 import com.example.leonardomorais.myapplication.Helper.SlidingTabLayout;
@@ -74,5 +76,11 @@ public class FeedActivity extends AppCompatActivity {
         tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
         viewPager.setAdapter(tabAdapter);
 
+    }
+
+    public void onAddButtonClick(View v){
+
+        Intent intent = new Intent(this, CadastroPostItActivity.class);
+        startActivity(intent);
     }
 }
