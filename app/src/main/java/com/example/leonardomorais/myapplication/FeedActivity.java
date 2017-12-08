@@ -56,6 +56,7 @@ public class FeedActivity extends AppCompatActivity {
                 for(DataSnapshot each : dataSnapshot.getChildren()){
 
                     Sprint sprint = each.getValue(Sprint.class);
+
                     colunas.clear();
                     for(Colunas coluna : sprint.getColunas()){
                         colunas.add(coluna);

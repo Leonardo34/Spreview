@@ -6,8 +6,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.leonardomorais.myapplication.Fragments.FeedFragment;
 import com.example.leonardomorais.myapplication.Model.Colunas;
+import com.example.leonardomorais.myapplication.Model.PostIts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ import java.util.List;
 public class TabAdapter extends FragmentStatePagerAdapter{
 
     public List<Colunas> colunas;
-
+    public List<PostIts> postIts = new ArrayList<>();
     public TabAdapter(FragmentManager fm, List<Colunas> colunas) {
 
         super(fm);
@@ -26,7 +28,9 @@ public class TabAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new FeedFragment(colunas.get(position).getPostIts());
+        postIts = colunas.get(position).getPostIts();
+        postIts.removeAll(Collections.singleton(null));
+        Fragment fragment = new FeedFragment(postIts, position);
         return fragment;
     }
 
