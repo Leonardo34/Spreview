@@ -2,6 +2,7 @@ package com.example.leonardomorais.myapplication.Adapter;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,11 +49,17 @@ public class PostItsAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.post_it_visualization, viewGroup, false);
+
         PostIts postIts = postItsList.get(i);
 
         TextView tvDescricaoPostIt = view.findViewById(R.id.tv_descricao_post_it);
-        tvDescricaoPostIt.setText(postIts.getDescricao());
 
+        tvDescricaoPostIt.setText(postIts.getDescricao());
+        tvDescricaoPostIt.setBackgroundColor(Color.parseColor(postIts.getCor()));
+
+        LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll_post_it_visualization);
+
+        ll.setBackgroundColor(Color.parseColor(postIts.getCor()));
         return view;
     }
 }

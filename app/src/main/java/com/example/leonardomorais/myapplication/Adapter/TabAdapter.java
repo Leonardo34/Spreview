@@ -16,7 +16,7 @@ import java.util.List;
 
 public class TabAdapter extends FragmentStatePagerAdapter{
 
-    public List<Colunas> colunas = new ArrayList<>();
+    public List<Colunas> colunas;
 
     public TabAdapter(FragmentManager fm, List<Colunas> colunas) {
 
@@ -38,5 +38,10 @@ public class TabAdapter extends FragmentStatePagerAdapter{
     @Override
     public CharSequence getPageTitle(int position){
         return colunas.get(position).getNome();
+    }
+
+    @Override
+    public int getItemPosition(Object object){
+        return POSITION_NONE;
     }
 }

@@ -60,9 +60,7 @@ public class FeedActivity extends AppCompatActivity {
                     }
                 }
 
-                tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
-                viewPager.setAdapter(tabAdapter);
-
+                tabAdapter.colunas = colunas;
                 slidingTabLayout.setViewPager(viewPager);
                 tabAdapter.notifyDataSetChanged();
             }
@@ -72,6 +70,9 @@ public class FeedActivity extends AppCompatActivity {
 
             }
         });
+
+        tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
+        viewPager.setAdapter(tabAdapter);
 
     }
 }
