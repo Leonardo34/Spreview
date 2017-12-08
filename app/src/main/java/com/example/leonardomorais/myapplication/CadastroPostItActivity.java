@@ -36,7 +36,7 @@ public class CadastroPostItActivity extends AppCompatActivity {
 
     private Map<String, PostIts> postItsMap = new HashMap<>();
 
-    private String corSalvar = "CCCCCC";
+    private String corSalvar = "ff40bfbf";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

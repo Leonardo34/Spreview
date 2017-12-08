@@ -12,6 +12,8 @@ public class Sprint {
 
     private List<Colunas> colunas;
 
+    private String key;
+
     private String getKey() {
         return key;
     }
@@ -19,8 +21,6 @@ public class Sprint {
     public void setKey(String key) {
         this.key = key;
     }
-
-    private String key;
 
 
     public String getName() {

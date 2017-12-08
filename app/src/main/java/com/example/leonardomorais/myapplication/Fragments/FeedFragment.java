@@ -92,7 +92,7 @@ public class FeedFragment extends Fragment implements View.OnClickListener {
                 .child("colunas")
                 .child(String.valueOf(posicaoColuna))
                 .child("postIts")
-                .child(String.valueOf(posicaoPostIt));
+                .child(postItsList.get(posicaoPostIt).getPublicKey());
 
         reference.removeValue();
         postItsList.remove(postIts);

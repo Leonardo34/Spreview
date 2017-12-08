@@ -16,6 +16,10 @@ public class PostIts {
         return key;
     }
 
+    public String getPublicKey(){
+        return this.key;
+    }
+
     public void setKey(String key) {
         this.key = key;
     }
