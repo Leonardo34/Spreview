@@ -1,18 +1,14 @@
 package com.example.leonardomorais.myapplication.Adapter;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.leonardomorais.myapplication.FeedActivity;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
@@ -25,9 +21,11 @@ import java.util.List;
 public class PostItsAdapter extends BaseAdapter {
 
     private List<PostIts> postItsList;
+    private View.OnClickListener onClickListener;
 
-    public PostItsAdapter(List<PostIts> postItsList) {
+    public PostItsAdapter(List<PostIts> postItsList, View.OnClickListener onClickListener) {
         this.postItsList = postItsList;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -58,6 +56,9 @@ public class PostItsAdapter extends BaseAdapter {
         tvDescricaoPostIt.setBackgroundColor(Color.parseColor(postIts.getCor()));
 
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll_post_it_visualization);
+
+        ImageView ivDeletePostIt = view.findViewById(R.id.iv_delete_post_it);
+        ivDeletePostIt.setOnClickListener(onClickListener);
 
         ll.setBackgroundColor(Color.parseColor(postIts.getCor()));
         return view;
