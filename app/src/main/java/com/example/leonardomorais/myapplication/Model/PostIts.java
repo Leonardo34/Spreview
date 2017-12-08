@@ -10,6 +10,16 @@ public class PostIts {
 
     private String cor;
 
+    private String key;
+
+    private String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public PostIts(){
 
     }

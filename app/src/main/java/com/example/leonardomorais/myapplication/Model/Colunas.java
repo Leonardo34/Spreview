@@ -12,6 +12,16 @@ public class Colunas {
 
     private List<PostIts> postIts;
 
+    private String key;
+
+    private String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public String getNome() {
         return nome;
     }

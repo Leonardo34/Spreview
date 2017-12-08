@@ -11,6 +11,7 @@ import android.view.View;
 import com.example.leonardomorais.myapplication.Adapter.TabAdapter;
 import com.example.leonardomorais.myapplication.Helper.SlidingTabLayout;
 import com.example.leonardomorais.myapplication.Model.Colunas;
+import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.Model.Sprint;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,11 +56,32 @@ public class FeedActivity extends AppCompatActivity {
 
                 for(DataSnapshot each : dataSnapshot.getChildren()){
 
+                    Colunas coluna;
+                    PostIts postIt;
+
                     Sprint sprint = each.getValue(Sprint.class);
+                    sprint.setKey(each.getKey());
 
                     colunas.clear();
-                    for(Colunas coluna : sprint.getColunas()){
-                        colunas.add(coluna);
+
+                    for(DataSnapshot eachSprintField : each.getChildren()){
+                        if(!"name".equalsIgnoreCase(eachSprintField.getKey())){
+                            for(DataSnapshot eachColumn : eachSprintField.getChildren()){
+                                coluna = eachColumn.getValue(Colunas.class);
+                                coluna.setKey(eachColumn.getKey());
+                                coluna.getPostIts().clear();
+                                for(DataSnapshot eachColumnField : eachColumn.getChildren()){
+                                    if(!"nome".equalsIgnoreCase(eachColumnField.getKey())){
+                                        for(DataSnapshot eachPostIt : eachColumnField.getChildren()){
+                                            postIt = eachPostIt.getValue(PostIts.class);
+                                            postIt.setKey(eachPostIt.getKey());
+                                            coluna.getPostIts().add(postIt);
+                                        }
+                                    }
+                                }
+                                colunas.add(coluna);
+                            }
+                        }
                     }
                 }
 
@@ -76,7 +98,6 @@ public class FeedActivity extends AppCompatActivity {
 
         tabAdapter = new TabAdapter(getSupportFragmentManager(), colunas);
         viewPager.setAdapter(tabAdapter);
-
     }
 
     public void onAddButtonClick(View v){
