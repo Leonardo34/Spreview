@@ -80,7 +80,10 @@ public class FeedActivity extends AppCompatActivity {
 
     public void onAddButtonClick(View v){
 
+        int position = viewPager.getCurrentItem();
+
         Intent intent = new Intent(this, CadastroPostItActivity.class);
+        intent.putExtra("posicaoColuna", String.valueOf(position));
         startActivity(intent);
     }
 }

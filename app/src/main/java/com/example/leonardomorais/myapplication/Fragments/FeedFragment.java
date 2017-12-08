@@ -2,6 +2,7 @@ package com.example.leonardomorais.myapplication.Fragments;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +13,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.leonardomorais.myapplication.Adapter.PostItsAdapter;
+import com.example.leonardomorais.myapplication.CadastroPostItActivity;
+import com.example.leonardomorais.myapplication.FeedActivity;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
