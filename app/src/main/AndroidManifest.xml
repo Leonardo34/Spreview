@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".FeedActivity" />
-        <activity android:name=".CadastroPostItActivity"></activity>
+        <activity android:name=".CadastroPostItActivity" />
     </application>
 
 </manifest>

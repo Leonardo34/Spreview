@@ -33,6 +33,7 @@
             android:text="Please log in."/>
 
         <EditText
+            android:id="@+id/et_email_login"
             android:layout_width="match_parent"
             android:layout_marginTop="30dp"
             android:layout_height="40dp"
@@ -40,7 +41,9 @@
             android:hint="Email"
             android:paddingLeft="10dp"
             android:inputType="textWebEmailAddress" />
+
         <EditText
+            android:id="@+id/et_password_login"
             android:layout_width="match_parent"
             android:layout_marginTop="6dp"
             android:layout_height="40dp"
@@ -50,12 +53,15 @@
             android:inputType="textPassword" />
 
         <TextView
+            android:id="@+id/et_bt_login"
             android:layout_width="220dp"
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
             android:layout_gravity="center"
             android:background="@color/colorAccent"
             android:gravity="center"
+            android:clickable="true"
+            android:onClick="onLoginButtonClick"
             android:text="Log In"
             android:textColor="@android:color/white"/>
 
