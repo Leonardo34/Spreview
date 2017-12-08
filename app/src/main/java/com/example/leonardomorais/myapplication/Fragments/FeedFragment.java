@@ -19,6 +19,7 @@ import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -46,6 +47,7 @@ public class FeedFragment extends Fragment implements View.OnClickListener {
 
         listView = view.findViewById(R.id.lv_feed_fragment);
 
+        postItsList.removeAll(Collections.singleton(null));
         adapter = new PostItsAdapter(postItsList, this);
 
         listView.setAdapter(adapter);
