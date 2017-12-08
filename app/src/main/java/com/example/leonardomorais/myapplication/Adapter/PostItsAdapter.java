@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

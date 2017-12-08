@@ -26,7 +26,7 @@ public class TabAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new FeedFragment(colunas.get(position).getPostIts());
+        Fragment fragment = new FeedFragment(colunas.get(position).getPostIts(), position);
         return fragment;
     }
 
