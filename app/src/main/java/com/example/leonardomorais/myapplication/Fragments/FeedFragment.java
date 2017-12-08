@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.leonardomorais.myapplication.Adapter.PostItsAdapter;
+import com.example.leonardomorais.myapplication.FeedActivity;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 
@@ -21,19 +23,15 @@ import java.util.List;
 public class FeedFragment extends Fragment {
 
     private ListView listView;
-    private ArrayAdapter adapter;
-    private List<String> textoPostits = new ArrayList<>();
+    private PostItsAdapter adapter;
+    private List<PostIts> postItsList = new ArrayList<>();
 
     public FeedFragment() {
     }
 
 
     public FeedFragment(List<PostIts> postItsList) {
-
-        for(PostIts postIt : postItsList){
-            textoPostits.add(postIt.getDescricao());
-        }
-
+       this.postItsList = postItsList;
     }
 
     @Override
@@ -44,7 +42,7 @@ public class FeedFragment extends Fragment {
 
         listView = view.findViewById(R.id.lv_feed_fragment);
 
-        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, textoPostits);
+        adapter = new PostItsAdapter(postItsList);
 
         listView.setAdapter(adapter);
 

@@ -36,7 +36,8 @@
 
     </LinearLayout>
 
-    <EditText
+    <TextView
+        android:id="@+id/tv_descricao_post_it"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
