@@ -37,6 +37,7 @@ public class CadastroPostItActivity extends AppCompatActivity {
     private Map<String, PostIts> postItsMap = new HashMap<>();
 
     private String corSalvar = "ff40bfbf";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +84,6 @@ public class CadastroPostItActivity extends AppCompatActivity {
 
     public void onAddButtonClick(View v){
 
-
-        Drawable background = textoPostIt.getBackground();
         PostIts novoPostIt = new PostIts(textoPostIt.getText().toString(), "#" + corSalvar);
         postItsMap.put(String.valueOf(Integer.valueOf(lastKey) + 1), novoPostIt);
         reference.child("postIts").setValue(postItsMap);
