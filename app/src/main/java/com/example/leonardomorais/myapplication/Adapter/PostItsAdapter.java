@@ -34,7 +34,6 @@ public class PostItsAdapter extends BaseAdapter {
         this.postItsList = postItsList;
         this.onClickListener = onClickListener;
         this.user = FirebaseAuth.getInstance().getCurrentUser();
-        String teste = user.getUid();
         this.posicaoColuna = posicaoColuna;
     }
 
