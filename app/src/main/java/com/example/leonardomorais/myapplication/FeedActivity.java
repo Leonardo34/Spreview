@@ -13,6 +13,8 @@ import com.example.leonardomorais.myapplication.Helper.SlidingTabLayout;
 import com.example.leonardomorais.myapplication.Model.Colunas;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.Model.Sprint;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,20 @@ public class FeedActivity extends AppCompatActivity {
     private FirebaseDatabase database;
 
     private TabAdapter tabAdapter;
+
+    private FirebaseAuth auth;
+
+    @Override
+    protected  void onResume(){
+        auth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        super.onResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +122,17 @@ public class FeedActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, CadastroPostItActivity.class);
         intent.putExtra("posicaoColuna", String.valueOf(position));
+        startActivity(intent);
+    }
+
+    public void onLogoutButtonClick(View v){
+
+        auth = FirebaseAuth.getInstance();
+
+        auth.signOut();
+
+        Intent intent = new Intent(this, MainActivity.class);
+
         startActivity(intent);
     }
 }
