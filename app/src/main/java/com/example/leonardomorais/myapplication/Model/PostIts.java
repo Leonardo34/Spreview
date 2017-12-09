@@ -1,10 +1,12 @@
 package com.example.leonardomorais.myapplication.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by lucasdamaceno on 06/12/17.
  */
 
-public class PostIts {
+public class PostIts implements Serializable {
 
     private String descricao;
 
@@ -58,5 +60,12 @@ public class PostIts {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        PostIts postIts = (PostIts) object;
+        return this.descricao.equals(postIts.getDescricao())
+                && this.cor.equals(postIts.getCor());
     }
 }

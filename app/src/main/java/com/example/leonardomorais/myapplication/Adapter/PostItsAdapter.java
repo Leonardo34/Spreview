@@ -1,5 +1,6 @@
 package com.example.leonardomorais.myapplication.Adapter;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.leonardomorais.myapplication.CadastroPostItActivity;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,13 +26,16 @@ public class PostItsAdapter extends BaseAdapter {
 
     private List<PostIts> postItsList;
     private View.OnClickListener onClickListener;
+    private int posicaoColuna;
 
     private FirebaseUser user;
 
-    public PostItsAdapter(List<PostIts> postItsList, View.OnClickListener onClickListener) {
+    public PostItsAdapter(List<PostIts> postItsList, View.OnClickListener onClickListener, int posicaoColuna) {
         this.postItsList = postItsList;
         this.onClickListener = onClickListener;
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        this.user = FirebaseAuth.getInstance().getCurrentUser();
+        String teste = user.getUid();
+        this.posicaoColuna = posicaoColuna;
     }
 
     @Override
@@ -53,7 +58,7 @@ public class PostItsAdapter extends BaseAdapter {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.post_it_visualization, viewGroup, false);
 
-        PostIts postIts = postItsList.get(i);
+        final PostIts postIts = postItsList.get(i);
 
         TextView tvDescricaoPostIt = view.findViewById(R.id.tv_descricao_post_it);
 
@@ -62,14 +67,25 @@ public class PostItsAdapter extends BaseAdapter {
 
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll_post_it_visualization);
 
-        ImageView ivEditPostIt = view.findViewById(R.id.iv_edit_postit_visualization);
+        ImageView ivEditPostIt = view.findViewById(R.id.iv_edit_post_it);
         ImageView ivDeletePostIt = view.findViewById(R.id.iv_delete_post_it);
         ivDeletePostIt.setOnClickListener(onClickListener);
 
-        if(!postIts.getCreator().equalsIgnoreCase(user.getUid())){
+        if (!postIts.getCreator().equalsIgnoreCase(user.getUid())) {
             ivEditPostIt.setVisibility(View.INVISIBLE);
             ivDeletePostIt.setVisibility(View.INVISIBLE);
         }
+
+        ivEditPostIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), CadastroPostItActivity.class);
+                intent.putExtra("postIt", postIts);
+                intent.putExtra("posicaoColuna", String.valueOf(posicaoColuna));
+                view.getContext().startActivity(intent);
+            }
+        });
+
         ll.setBackgroundColor(Color.parseColor(postIts.getCor()));
         return view;
     }

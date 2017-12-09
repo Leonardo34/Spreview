@@ -14,14 +14,12 @@ import android.widget.Toast;
 
 import com.example.leonardomorais.myapplication.Adapter.PostItsAdapter;
 import com.example.leonardomorais.myapplication.CadastroPostItActivity;
-import com.example.leonardomorais.myapplication.FeedActivity;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class FeedFragment extends Fragment implements View.OnClickListener {
 
         postItsList.removeAll(Collections.singleton(null));
 
-        adapter = new PostItsAdapter(postItsList, this);
+        adapter = new PostItsAdapter(postItsList, this, posicaoColuna);
 
         listView.setAdapter(adapter);
 
