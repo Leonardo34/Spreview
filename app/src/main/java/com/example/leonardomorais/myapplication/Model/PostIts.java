@@ -12,6 +12,8 @@ public class PostIts {
 
     private String key;
 
+    private String creator;
+
     private String getKey() {
         return key;
     }
@@ -28,9 +30,10 @@ public class PostIts {
 
     }
 
-    public PostIts(String descricao, String cor){
+    public PostIts(String descricao, String cor, String creator){
         this.descricao = descricao;
         this.cor = cor;
+        this.creator = creator;
     }
 
     public String getCor() {
@@ -47,5 +50,13 @@ public class PostIts {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 }

@@ -11,6 +11,8 @@ import android.widget.EditText;
 import com.example.leonardomorais.myapplication.Model.Colunas;
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.Model.Sprint;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,8 @@ public class CadastroPostItActivity extends AppCompatActivity {
     private Map<String, PostIts> postItsMap = new HashMap<>();
 
     private String corSalvar = "ff40bfbf";
+
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +86,28 @@ public class CadastroPostItActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected  void onResume(){
+
+        auth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        super.onResume();
+    }
+
     public void onAddButtonClick(View v){
 
-        PostIts novoPostIt = new PostIts(textoPostIt.getText().toString(), "#" + corSalvar);
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser == null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        PostIts novoPostIt = new PostIts(textoPostIt.getText().toString(), "#" + corSalvar, currentUser.getUid());
         postItsMap.put(String.valueOf(Integer.valueOf(lastKey) + 1), novoPostIt);
         reference.child("postIts").setValue(postItsMap);
 

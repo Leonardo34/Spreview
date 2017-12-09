@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.example.leonardomorais.myapplication.Model.PostIts;
 import com.example.leonardomorais.myapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -23,9 +25,12 @@ public class PostItsAdapter extends BaseAdapter {
     private List<PostIts> postItsList;
     private View.OnClickListener onClickListener;
 
+    private FirebaseUser user;
+
     public PostItsAdapter(List<PostIts> postItsList, View.OnClickListener onClickListener) {
         this.postItsList = postItsList;
         this.onClickListener = onClickListener;
+        user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -57,9 +62,14 @@ public class PostItsAdapter extends BaseAdapter {
 
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll_post_it_visualization);
 
+        ImageView ivEditPostIt = view.findViewById(R.id.iv_edit_postit_visualization);
         ImageView ivDeletePostIt = view.findViewById(R.id.iv_delete_post_it);
         ivDeletePostIt.setOnClickListener(onClickListener);
 
+        if(!postIts.getCreator().equalsIgnoreCase(user.getUid())){
+            ivEditPostIt.setVisibility(View.INVISIBLE);
+            ivDeletePostIt.setVisibility(View.INVISIBLE);
+        }
         ll.setBackgroundColor(Color.parseColor(postIts.getCor()));
         return view;
     }
