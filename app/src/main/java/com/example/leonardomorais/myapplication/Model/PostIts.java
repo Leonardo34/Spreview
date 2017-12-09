@@ -62,10 +62,11 @@ public class PostIts implements Serializable {
         this.creator = creator;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        PostIts postIts = (PostIts) object;
-        return this.descricao.equals(postIts.getDescricao())
-                && this.cor.equals(postIts.getCor());
-    }
+//    @Override
+//    public boolean equals(Object object) {
+//        PostIts postIts = (PostIts) object;
+//        return this.descricao.equals(postIts.getDescricao())
+//                && this.cor.equals(postIts.getCor())
+//                && this.creator.equalsIgnoreCase(postIts.getCreator());
+//    }
 }

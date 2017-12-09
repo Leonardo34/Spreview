@@ -75,7 +75,7 @@ public class CadastroPostItActivity extends AppCompatActivity {
                         for (DataSnapshot cadaPostIt : each.getChildren()) {
                             PostIts postIt = cadaPostIt.getValue(PostIts.class);
                             postItsMap.put(cadaPostIt.getKey(), postIt);
-                            if (postItsEdicao != null && postItsEdicao.equals(postIt)) {
+                            if (postItsEdicao != null && postItsEdicao.getPublicKey().equalsIgnoreCase(cadaPostIt.getKey())) {
                                 keyPostItEdicao = cadaPostIt.getKey();
                             }
                             lastKey = cadaPostIt.getKey();
