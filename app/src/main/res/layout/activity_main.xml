@@ -24,7 +24,7 @@
             android:textSize="60sp" />
 
         <TextView
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="20dp"
             android:textSize="22sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
