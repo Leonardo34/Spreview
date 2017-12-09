@@ -30,7 +30,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:drawableRight="@drawable/ic_expand"
             android:gravity="center"
             android:paddingRight="20dp"
             android:text="Sprint 18"
